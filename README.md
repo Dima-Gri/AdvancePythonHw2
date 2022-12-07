@@ -1,2 +1,4 @@
 # AdvancePythonHw2
-pum
+Задание 1 - pasrsing
+Задание 2 - DjangoApplication
+Задание 3 - Application
