@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <link type="text/css" href="{% static 'pdf_converter/css/style_login.css' %}" rel="stylesheet"/>
+</head>
+<body>
+
+<form method="post">
+    {% csrf_token %}
+    <div class="container">
+        <p class="heading">Login In</p>
+            <div class="form-error"> {{ form.non_field_errors }}</div>
+            {% for f in form %}
+                <div class="box">
+                    <p><label for="{{ f.id_for_label }}"> {{ f.label }}</label></p>
+                    <div>{{ f }}</div>
+                </div>
+                <div class="form-error">{{ f.errors }}</div>
+
+            {% endfor %}
+
+        <input class="loginBtn" type="submit" value="Login">
+        <p class="text">Don't have an account? <a href="{% url 'register' %}">Signup</a></p>
+    </div>
+</form>
+
+
+
+</body>
+</html>

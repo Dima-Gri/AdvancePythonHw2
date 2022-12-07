@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link type="text/css" href="{% static 'pdf_converter/css/archive.css' %}" rel="stylesheet"/>
+
+</head>
+<body>
+
+
+<div class="page-content page-container" id="page-content">
+   <div class="padding">
+      <div class="row">
+         <div class="col-sm-1">
+
+            <div class="list list-row block">
+                {% for post in posts %}
+               <div class="list-item" data-id="19">
+                  <div><span class="w-48 avatar gd-warning">{{ post.get_first_letters }}</span></div>
+                  <div class="flex">
+                     <a href="{% url 'show_resume' post.pk %}" class="item-author text-color" data-abc="true">{{ post.filename }}</a>
+                      <div class="item-except text-muted text-sm h-1x"><a href="{% url 'show_resume' post.pk %}" class="no-blue">{{ post.name }}</a></div>
+                  </div>
+                  <div class="no-wrap">
+                      <div class="item-date text-muted text-sm d-none d-md-block">Time create: {{ post.time_create.ctime }}</div>
+                      <div class="item-date text-muted text-sm d-none d-md-block">Last update: {{ post.time_create.ctime }}</div>
+                  </div>
+                   <div class="open">
+                       <a href="{% url 'show_resume' post.pk %}"> <button class="onbutton" data-tooltip="Watch resume">Edit</button> </a>
+                       <a href="{% url 'download' post.pk %}"> <button class="onbutton" data-tooltip="Watch resume">View</button> </a>
+                       <a href="{% url 'download' post.pk %}"> <button class="onbutton" data-tooltip="Watch resume"> Download</button> </a>
+                   </div>
+               </div>
+                {% endfor %}
+            </div>
+         </div>
+
+      </div>
+   </div>
+</div>
+
+</body>
+</html>

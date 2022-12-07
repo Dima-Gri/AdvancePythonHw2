@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>archive</title>
+    <link type="text/css" href="{% static 'pdf_converter/css/archive.css' %}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+
+</head>
+<body>
+
+{% if request.user.is_authenticated %}
+{% block mainmenu %}
+		<div class="header">
+			<ul id="mainmenu" class="mainmenu">
+			<li class="logo"><a href="{% url 'home' %}"><div class="logo"></div></a></li>
+{% for m in menu %}
+			<li><a href="{% url m.url_name %}">{{m.title}}</a></li>
+            <li class="last">Пользователь: {{ user.username }}<br> <a href="{% url 'logout' %}">Выйти</a></li>
+{% endfor %}
+			</ul>
+			<div class="clear"></div>
+		</div>
+{% endblock mainmenu %}
+    <div class="page-content page-container" id="page-content">
+    {% if not posts %}
+    <p class="head-text">Resume's archive empty</p>
+    {% else %}
+    <p class="head-text">Resume's archive</p>
+{% endif %}
+   <div class="padding">
+      <div class="row">
+         <div class="col-sm-1">
+
+            <div class="list list-row block">
+                {% for post in posts %}
+               <div class="list-item" data-id="19">
+                  <div><span class="w-48 avatar gd-warning">{{ post.get_first_letters }}</span></div>
+                  <div class="flex">
+                     <a href="{% url 'show_resume' post.pk %}" class="item-author text-color" data-abc="true">{{ post.filename }}</a>
+                      <div class="item-except text-muted text-sm h-1x"><a href="{% url 'show_resume' post.pk %}" class="no-blue">{{ post.name }}</a></div>
+                  </div>
+                  <div class="no-wrap">
+                      <div class="item-date text-muted text-sm d-none d-md-block">Time create: {{ post.time_create.ctime }}</div>
+                      <div class="item-date text-muted text-sm d-none d-md-block">Last update: {{ post.time_create.ctime }}</div>
+                  </div>
+                   <div class="open">
+                       <a href="{% url 'show_resume' post.pk %}"> <button class="onbutton" data-tooltip="Watch resume">Edit</button> </a>
+                       <a href="{% url 'view' post.pk %}"> <button class="onbutton" data-tooltip="Watch resume">View</button> </a>
+                       <a href="{% url 'download' post.pk %}" download="{{ post.filename }}"> <button class="onbutton" data-tooltip="Watch resume"> Download</button> </a>
+                   </div>
+               </div>
+                {% endfor %}
+            </div>
+         </div>
+
+      </div>
+   </div>
+</div>
+{% else %}
+{% endif %}
+
+</body>
+</html>
+
+

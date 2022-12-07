@@ -1,0 +1,28 @@
+p {
+    font-size: 17px;
+	line-height: 22px;
+}
+.image {
+float: left;
+display: block;
+    height: 200px;
+width: 150px;
+border: 1px solid black;
+    margin-right: 20px;
+}
+
+.info {
+display: block;
+height: 200px;
+border: 1px solid black;
+}
+
+.head {
+    width: 100%;
+    border: 1px solid black;
+
+}
+
+.item {
+     font-family: "Aubrey Pro", "Regular", sans-serif;
+}

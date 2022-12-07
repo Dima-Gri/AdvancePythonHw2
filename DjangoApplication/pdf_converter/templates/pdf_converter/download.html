@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>view</title>
+    <link type="text/css" href="{% static 'pdf_converter/css/download_file.css' %}" rel="stylesheet"/>
+</head>
+<body>
+<h1>RESUME</h1>
+<div class="head">
+    <div class="image">
+        {% if resume.photo %}
+        <img class="" src="{{ resume.photo.url }}" width="150px" height="200px">
+    {% endif %}
+    </div>
+    <div class="info">
+        <p><b>{{ resume.name }}</b></p>
+        {{ resume.contacts|linebreaks }}
+    </div>
+</div>
+<div class="education">
+   <h2 class="item">Education</h2>
+    <hr>
+    {{ resume.education|linebreaks }}
+</div>
+
+<div class="awards">
+   <h2>Awards</h2>
+    <hr>
+    {{  resume.awards|linebreaks }}
+</div>
+
+<div class="skills">
+   <h2 class="item">Skills</h2>
+    <hr>
+    {{ resume.skills|linebreaks }}
+</div>
+
+</body>
+</html>
